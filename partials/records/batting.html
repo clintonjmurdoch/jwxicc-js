@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <!--Body content-->
+      <h3>
+        Batting Records
+      </h3>
+      <p>
+        Filters: <input type="checkbox" ng-model="wfOnlyCheckboxModel.wfOnly" ng-change="filterWillowfest()"> Willowfest Only</input>
+      </p>
+      <div class="panel panel-default">
+        <div class="panel-heading">Highest Score</div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr><th>Score</th><th>Player</th><th>Match</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="rec in highestScores">
+                <td>{{rec.score}} ({{rec.balls}})</td>
+                <td>{{rec.scorecardname}}</td>
+                <td>v {{rec.hometeamid == rec.teamid ? rec.awayteamname : rec.hometeamname}} at {{rec.groundname}}</td>
+                <td class="date-col">{{rec.date | date: 'dd/MM/yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">Most Career Runs</div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr><th>Player</th><th>Mts</th><th>Inns</th><th>NO</th><th>Runs</th><th>Balls</th><th>Avg</th><th>HS</th><th>50s</th><th>100s</th><th>0s</th><th>SR</th></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="rec in careerRuns">
+                <td>{{rec.scorecardname}}</td>
+                <td>{{rec.matches}}</td>
+                <td>{{rec.innings}}</td>
+                <td>{{rec.notouts}}</td>
+                <td>{{rec.total}}</td>
+                <td>{{rec.ballsfaced}}</td>
+                <td>{{rec.avg | number:2}}</td>
+                <td>{{rec.bb_runs}} ({{rec.bb_balls}})</td>
+                <td>{{rec['50s']}}</td>
+                <td>{{rec['100s']}}</td>
+                <td>{{rec['0s']}}</td>
+                <td>{{rec.strikerate | number:2}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">Best Career Average</div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr><th>Player</th><th>Mts</th><th>Inns</th><th>NO</th><th>Runs</th><th>Balls</th><th>Avg</th><th>HS</th><th>50s</th><th>100s</th><th>SR</th></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="rec in careerAverage">
+                <td>{{rec.scorecardname}}</td>
+                <td>{{rec.matches}}</td>
+                <td>{{rec.innings}}</td>
+                <td>{{rec.notouts}}</td>
+                <td>{{rec.total}}</td>
+                <td>{{rec.ballsfaced}}</td>
+                <td>{{rec.avg | number:2}}</td>
+                <td>{{rec.bb_runs}} ({{rec.bb_balls}})</td>
+                <td>{{rec['50s']}}</td>
+                <td>{{rec['100s']}}</td>
+                <td>{{rec.strikerate | number:2}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

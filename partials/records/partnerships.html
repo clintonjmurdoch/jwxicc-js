@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <!--Body content-->
+      <h3>
+        Partnership Records
+      </h3>
+      <p>
+        Filters: <input type="checkbox" ng-model="wfOnlyCheckboxModel.wfOnly" ng-change="filterWillowfest()"> Willowfest Only</input>
+      </p>
+      <div ng-repeat="ix in wickets">
+        <div class="panel panel-default">
+          <div class="panel-heading">{{ix == 0 ? 'All Wickets' : 'Wicket ' + ix}}</div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr><th>Runs</th><th>Players</th><th>Match</th><th>Date</th><th ng-if="ix == 0">Wicket</th></tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="rec in partnerships[ix]">
+                  <td>{{rec.runsscored}}</td>
+                  <td>{{rec.players[0].scorecardname}} / {{rec.players[1].scorecardname}}</td>
+                  <td>v {{rec.hometeamid == rec.teamid ? rec.awayteamname : rec.hometeamname}} at {{rec.groundname}}</td>
+                  <td class="date-col">{{rec.date | date: 'dd/MM/yyyy'}}</td>
+                  <td ng-if="ix == 0">{{rec.wicket}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

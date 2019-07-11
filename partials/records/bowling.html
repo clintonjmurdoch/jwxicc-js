@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <!--Body content-->
+      <h3>
+        Bowling Records
+      </h3>
+      <p>
+        Filters: <input type="checkbox" ng-model="wfOnlyCheckboxModel.wfOnly" ng-change="filterWillowfest()"> Willowfest Only</input>
+      </p>
+      <div class="panel panel-default">
+        <div class="panel-heading">Best Bowling in an Innings</div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr><th>Bowling</th><th>Overs</th><th>Player</th><th>Match</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="rec in bestBowling">
+                <td>{{rec.wickets}}/{{rec.runs}}</td>
+                <td>{{rec.overs | number:undefined:1*(amount % 1 !== 0)}}</td>
+                <td>{{rec.scorecardname}}</td>
+                <td>v {{rec.hometeamid == rec.teamid ? rec.awayteamname : rec.hometeamname}} at {{rec.groundname}}</td>
+                <td class="date-col">{{rec.date | date: 'dd/MM/yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">Most Career Wickets</div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr><th>Player</th><th>Mts</th><th>Overs</th><th>M</th><th>Runs</th><th>Wkts</th><th>Avg</th><th>Best</th><th>5I</th><th>Econ</th></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="rec in careerWickets">
+                <td>{{rec.scorecardname}}</td>
+                <td>{{rec.matches}}</td>
+                <td>{{rec.overs}}</td>
+                <td>{{rec.maidens}}</td>
+                <td>{{rec.runs}}</td>
+                <td>{{rec.wickets}}</td>
+                <td>{{rec.avg | number:2}}</td>
+                <td>{{rec.bb_wickets}}/{{rec.bb_runs}}</td>
+                <td>{{rec['5i']}}</td>
+                <td>{{rec.economy | number:2}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">Best Career Average</div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr><th>Player</th><th>Mts</th><th>Overs</th><th>M</th><th>Runs</th><th>Wkts</th><th>Avg</th><th>Best</th><th>5I</th><th>Econ</th></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="rec in careerAverage">
+                <td>{{rec.scorecardname}}</td>
+                <td>{{rec.matches}}</td>
+                <td>{{rec.overs}}</td>
+                <td>{{rec.maidens}}</td>
+                <td>{{rec.runs}}</td>
+                <td>{{rec.wickets}}</td>
+                <td>{{rec.avg | number:2}}</td>
+                <td>{{rec.bb_wickets}}/{{rec.bb_runs}}</td>
+                <td>{{rec['5i']}}</td>
+                <td>{{rec.economy | number:2}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
