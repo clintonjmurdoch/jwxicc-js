@@ -19,9 +19,7 @@ define('WILLOWFEST_QUALIFIER_SQL', " and b.inningsid in (select inningsid from i
 
 $container = $app->getContainer();
 $container['db'] = function () {
-  //$mysqli = new mysqli("sql211.epizy.com", "epiz_20874118", "WzhK6iCB7D", "epiz_20874118_jsf");
-  //$mysqli = new mysqli("jwxicc.czg4gbfnlvfj.us-west-2.rds.amazonaws.com", "jwxicc", "jwxiccmysql", "jwxicc");
-  $mysqli = new mysqli("localhost", "root", null, "epiz_20874118_jsf", 3306);
+  $mysqli = new mysqli("localhost", "web", "jboss", "jwxicc", 3306);
   return $mysqli;
 };
 
