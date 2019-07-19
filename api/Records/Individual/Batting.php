@@ -67,7 +67,7 @@ class Batting {
     if ($wfOnly) {
       $sql .= WILLOWFEST_QUALIFIER_SQL;
     }
-    $sql .= " group by playerid order by total desc, avg desc, strikerate desc, ballsfaced asc limit " . MAX_RESULTS;
+    $sql .= " group by playerid, bb.score, bb.balls, bb.outstatus order by total desc, avg desc, strikerate desc, ballsfaced asc limit " . MAX_RESULTS;
 
     if (!$result = $this->db->query(strtolower($sql))) {
       exit();
@@ -81,7 +81,7 @@ class Batting {
     if ($wfOnly) {
       $sql .= WILLOWFEST_QUALIFIER_SQL;
     }
-    $sql .= " group by playerid "
+    $sql .= " group by playerid, bb.score, bb.balls, bb.outstatus "
 				. " having count(if(b.howoutid not in (0, 16, 17),1,null)) >= "
 				. self::MIN_INNINGS_FOR_AVERAGE 
 				. " order by avg desc, total desc, strikerate desc, ballsfaced asc limit " . MAX_RESULTS;
