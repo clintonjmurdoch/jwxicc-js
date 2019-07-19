@@ -1,4 +1,3 @@
 {
-  "cwd": "..",
-  "directory": "app/bower_components"
+  "directory": "bower_components"
 }
