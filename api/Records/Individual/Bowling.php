@@ -12,7 +12,7 @@ class Bowling {
   const WILLOWFEST_BEST_BOWLING_TABLE = "(select * from " 
 			. "(select * from ((select * from best_bowling_seasons where competitionid in " 
 			. "(select competitionid from competition where associationNAme = 'Willowfest') "
-			. "order by wickets desc, runs asc) as dfjv) group by playerid) as dfgdg )";
+			. "order by wickets desc, runs asc) as dfjv) group by playerid, bb.wickets, bb.runs) as dfgdg )";
   
   const WILLOWFEST_QUALIFIER_SQL = " and inningsid in (select inningsid from innings i inner join game g on i.gameid = g.gameid "
 			. "inner join competition c on g.competitionid = c.competitionid where associationName = 'Willowfest') ";
@@ -62,7 +62,7 @@ class Bowling {
 		if ($wfOnly) {
       $sql .= self::WILLOWFEST_QUALIFIER_SQL;
     }
-		$sql .= "group by p.playerid order by wickets desc, runs asc, overs asc limit " . MAX_RESULTS;
+		$sql .= "group by p.playerid, bb.wickets, bb.runs order by wickets desc, runs asc, overs asc limit " . MAX_RESULTS;
 		
 		if (!$result = $this->db->query(strtolower($sql))) {
       exit();
@@ -80,7 +80,7 @@ class Bowling {
       $sql .= self::WILLOWFEST_QUALIFIER_SQL;
     }
     
-    $sql .= "group by p.playerid "
+    $sql .= "group by p.playerid, bb.wickets, bb.runs "
 				. "having sum(bo.wickets) >= " . self::MIN_WICKETS_FOR_AVERAGE . " "
 				. "order by (0 - sum(bo.runs)/sum(bo.wickets)) desc, wickets desc, overs asc limit " . MAX_RESULTS;
     
